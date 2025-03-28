@@ -22,3 +22,6 @@ La práctica incluye una serie de ejercicios que cubren los siguientes temas:
 2. Asegúrate de tener **Java 18** (o versión compatible) instalado.
 3. Abre el proyecto en tu IDE preferido y compila los archivos de Java.
 4. Ejecuta las aplicaciones y observa los resultados de la simulación concurrente.
+
+## Authors
+- [@Luis Francisco Martinez (Francisco9403)](https://github.com/Francisco9403)
