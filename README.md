@@ -23,5 +23,5 @@ La práctica incluye una serie de ejercicios que cubren los siguientes temas:
 3. Abre el proyecto en tu IDE preferido y compila los archivos de Java.
 4. Ejecuta las aplicaciones y observa los resultados de la simulación concurrente.
 
-## Authors
+## Autor
 - [@Luis Francisco Martinez (Francisco9403)](https://github.com/Francisco9403)
