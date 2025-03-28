@@ -1,0 +1,70 @@
+Diferencias entre sleep() y wait() en Java**
+Ambos métodos (sleep() y wait()) afectan el estado de un hilo en Java, pero tienen propósitos y comportamientos diferentes.
+
+| Característica      |                           sleep(ms)                                 | wait(ms)                          |
+|---------------------|---------------------------------------------------------------------|---------------------------------------------------|
+| Ubicación           | Es un método de la clase Thread.                                    | Es un método de la clase Object. |
+| Propósito           | Pausa la ejecución del hilo actual durante un tiempo determinado.   | Hace que el hilo espere hasta ser notificado o hasta que pase el tiempo especificado. |
+| Requiere synchronized?| ❌ No                                                            | ✅ Sí (debe llamarse dentro de un bloque synchronized).  |
+| Estado del hilo     | Pasa a estado **"Timed Waiting"** durante el tiempo especificado.   | Pasa a estado "Waiting" hasta que otro hilo lo notifique con notify() o notifyAll(). |
+| Bloqueo del monitor | ❌ No libera el bloqueo del objeto si está dentro de synchronized.  | ✅ Libera el bloqueo del objeto y permite que otros hilos lo adquieran. |
+| Reanudación         | Se reanuda automáticamente después del tiempo especificado.         | Se reanuda solo cuando otro hilo lo despierta con `notify()` o `notifyAll()`,
+                                                                                                o si se especificó un tiempo, cuando este se cumpla. |
+Ejemplo con sleep()
+
+class SleepExample {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            System.out.println("Hilo dormirá por 3 segundos...");
+            try {
+                Thread.sleep(3000); // El hilo duerme 3 segundos
+            } catch (InterruptedException e) {
+                System.out.println("Hilo interrumpido");
+            }
+            System.out.println("Hilo despertó");
+        });
+
+        t1.start();
+    }
+}
+
+🔹 Explicación: El hilo se pausa por 3 segundos, pero sigue manteniendo cualquier bloqueo que haya adquirido.
+
+Ejemplo con wait()
+
+class WaitExample {
+    private static final Object lock = new Object();
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    System.out.println("Hilo en espera...");
+                    lock.wait(); // Libera el bloqueo y espera a ser notificado
+                    System.out.println("Hilo despertó");
+                } catch (InterruptedException e) {
+                    System.out.println("Hilo interrumpido");
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (lock) {
+                System.out.println("Notificando al hilo...");
+                lock.notify(); // Despierta a t1
+            }
+        });
+
+        t1.start();
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        t2.start();
+    }
+}
+🔹 Explicación:
+- t1 entra en espera con wait(), liberando el bloqueo** de lock.
+- t2 adquiere el bloqueo y llama a notify(), lo que despierta a t1.
+
+
+✔️ sleep() simplemente pausa el hilo sin liberar bloqueos.
+✔️ wait() pausa el hilo y libera el bloqueo, permitiendo que otros hilos continúen ejecutándose.
+✔️ wait() se usa para sincronización entre hilos, mientras que sleep() es solo para pausas temporales.
