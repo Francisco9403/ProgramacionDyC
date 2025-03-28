@@ -1,0 +1,22 @@
+Problema de la Cena de los Filósofos
+-------------------------------------
+El problema de la Cena de los Filósofos es un problema clásico de concurrencia propuesto por
+Edsger Dijkstra en 1965. Describe una situación en la que varios procesos compiten por recursos
+compartidos y pueden quedar en interbloqueo (deadlock) o en inanición (starvation) si no se
+gestionan correctamente.
+
+Descripción del Problema
+-------------------------
+-> Hay 5 filósofos sentados alrededor de una mesa circular.
+
+-> Cada filósofo piensa o come.
+
+-> Para comer, cada filósofo necesita tomar dos tenedores (uno a su izquierda y otro a su derecha).
+
+-> Solo hay 5 tenedores, por lo que no siempre todos los filósofos pueden comer al mismo tiempo.
+
+-> El desafío es diseñar una solución que evite:
+
+     ->> Interbloqueo (Deadlock): Ocurre cuando todos los filósofos toman un tenedor y esperan el otro indefinidamente.
+
+     ->> Inanición (Starvation): Ocurre cuando un filósofo nunca tiene la oportunidad de comer.
