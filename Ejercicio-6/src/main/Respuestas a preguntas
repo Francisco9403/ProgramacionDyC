@@ -1,17 +1,17 @@
 Respuesta a las Preguntas:
 
 a.- ¿Cuál es la sección crítica?
-La sección crítica ocurre cuando un vehículo intenta entrar a la cochera (ingresarVehiculo).
+La sección crítica ocurre cuando:
+--> Un vehículo intenta entrar a la cochera (ingresarVehiculo).
+--> Un vehículo sale de la cochera (salirVehiculo).
 
-Un vehículo sale de la cochera (salirVehiculo). Ambas operaciones modifican la cantidad
-de espacios disponibles y deben ser sincronizadas para evitar condiciones de carrera.
+Ambas operaciones modifican la cantidad de espacios disponibles y deben ser sincronizadas para evitar condiciones de carrera.
 
 b.- ¿Conviene usar Thread, clases internas o Runnable?
-Se usa Runnable dentro de Thread, lo cual es más flexible que extender Thread, ya que
- reutilizar código y aplicar composición en lugar de herencia.
-
-Los hilos son los vehículos. Cada vehículo es un hilo que intenta entrar y salir de la cochera.
+--> Se usa Runnable dentro de Thread, lo cual es más flexible que extender Thread, ya que reutilizar código y aplicar
+ en lugar de herencia.
+--> Los hilos son los vehículos. Cada vehículo es un hilo que intenta entrar y salir de la cochera.
 
 c.- ¿Qué mecanismos de sincronización se pueden usar?
-Se usa synchronized ya que asegura que los métodos ingresarVehiculo y salirVehiculo sean exclusivos para un solo hilo a la vez.
-Se usa wait()/notifyAll() para hacer que los vehículos esperen cuando la cochera está llena y reanuden cuando hay espacio.
+--> Se usa synchronized ya que asegura que los métodos ingresarVehiculo y salirVehiculo sean exclusivos para un solo hilo a la vez.
+--> Se usa wait()/notifyAll() para hacer que los vehículos esperen cuando la cochera está llena y reanuden cuando hay espacio.
