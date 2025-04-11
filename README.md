@@ -23,7 +23,5 @@ La práctica incluye una serie de ejercicios que cubren los siguientes temas:
 3. Abre el proyecto en tu IDE preferido y compila los archivos de Java.
 4. Ejecuta las aplicaciones y observa los resultados de la simulación concurrente.
 
-## Conclusión
-
-Este TP permite una comprensión profunda de la **programación concurrente** en Java, abordando problemas prácticos y ofreciendo soluciones mediante técnicas de sincronización de hilos y coordinación entre tareas concurrentes. Los ejercicios permiten experimentar con hilos, bloques de código sincronizados y el uso de métodos como `sleep()`, `wait()`, y `notify()` para gestionar el flujo de ejecución de múltiples hilos.
-
+## Autor
+- [@Luis Francisco Martinez (Francisco9403)](https://github.com/Francisco9403)
